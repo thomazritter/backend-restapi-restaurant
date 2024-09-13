@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Funcionario {
-  funcionario_id Int       @id @default(autoincrement())
+  funcionario_id  Int       @id @default(autoincrement())
   nome_funcionario String
   cargo           String
   telefone        String

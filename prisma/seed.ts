@@ -12,12 +12,21 @@ async function main() {
       nome_categoria: 'Bebidas',
     },
   });
+  
 
   const categoria2 = await prisma.categoria_Produto.upsert({
     where: { nome_categoria: 'Pratos Principais' },
     update: {},
     create: {
       nome_categoria: 'Pratos Principais',
+    },
+  });
+
+  onst categoria3 = await prisma.categoria_Produto.upsert({
+    where: { nome_categoria: 'Entradas' },
+    update: {},
+    create: {
+      nome_categoria: 'Entradas',
     },
   });
 
