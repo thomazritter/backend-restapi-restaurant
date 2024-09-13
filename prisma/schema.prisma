@@ -10,12 +10,70 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Article {
-  id          Int      @id @default(autoincrement())
-  title       String   @unique
-  description String?
-  body        String
-  published   Boolean  @default(false)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+model Funcionario {
+  funcionario_id Int       @id @default(autoincrement())
+  nome_funcionario String
+  cargo           String
+  telefone        String
+  email           String
+  endereco        String
+  pedidos         Pedido[] // 1:n relation with Pedido
 }
+
+model Cliente {
+  cliente_id Int     @id @default(autoincrement())
+  nome       String
+  telefone   String
+  email      String
+  endereco   String
+  pedidos    Pedido[] // 1:n relation with Pedido
+}
+
+model Pedido {
+  pedido_id    Int          @id @default(autoincrement())
+  data_pedido  DateTime
+  valor_total  Float
+  cliente      Cliente      @relation(fields: [cliente_id], references: [cliente_id])
+  cliente_id   Int
+  funcionario  Funcionario  @relation(fields: [funcionario_id], references: [funcionario_id])
+  funcionario_id Int
+  itens_pedido Item_Pedido[] // 1:n relation with Item_Pedido
+}
+
+model Item_Pedido {
+  item_pedido_id Int        @id @default(autoincrement())
+  data_pedido    DateTime
+  valor_total    Float
+  produto        Produto     @relation(fields: [produto_id], references: [produto_id])
+  produto_id     Int
+  pedido         Pedido      @relation(fields: [pedido_id], references: [pedido_id])
+  pedido_id      Int
+}
+
+model Produto {
+  produto_id   Int              @id @default(autoincrement())
+  nome_produto String
+  descricao    String
+  preco        Float
+  categoria    Categoria_Produto @relation(fields: [categoria_id], references: [categoria_id])
+  categoria_id Int
+  fornecedor   Fornecedor        @relation(fields: [fornecedor_id], references: [fornecedor_id])
+  fornecedor_id Int
+  itens_pedido Item_Pedido[]     // 1:n relation with Item_Pedido
+}
+
+model Fornecedor {
+  fornecedor_id Int      @id @default(autoincrement())
+  nome_fornecedor String
+  telefone        String
+  email           String
+  endereco        String
+  produtos        Produto[] // 1:n relation with Produto
+}
+
+model Categoria_Produto {
+  categoria_id Int       @id @default(autoincrement())
+  nome_categoria String
+  produtos       Produto[] // 1:n relation with Produto
+}
+
