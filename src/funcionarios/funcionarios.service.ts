@@ -19,11 +19,14 @@ export class FuncionariosService {
     return this.prisma.funcionario.findUnique({where: { funcionario_id }});
   }
 
-  update(id: number, updateFuncionarioDto: UpdateFuncionarioDto) {
-    return `This action updates a #${id} funcionario`;
+  update(funcionario_id: number, updateFuncionarioDto: UpdateFuncionarioDto) {
+    return this.prisma.funcionario.update({
+      where: { funcionario_id },
+      data: updateFuncionarioDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} funcionario`;
+  remove(funcionario_id: number) {
+    return this.prisma.funcionario.delete({ where: { funcionario_id }});
   }
 }

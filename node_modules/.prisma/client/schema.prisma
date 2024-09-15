@@ -24,7 +24,7 @@ model Cliente {
   cliente_id Int     @id @default(autoincrement())
   nome       String
   telefone   String
-  email      String
+  email      String  @unique
   endereco   String
   pedidos    Pedido[] // 1:n relation with Pedido
 }
@@ -52,7 +52,7 @@ model Item_Pedido {
 
 model Produto {
   produto_id   Int              @id @default(autoincrement())
-  nome_produto String
+  nome_produto String           @unique
   descricao    String
   preco        Float
   categoria    Categoria_Produto @relation(fields: [categoria_id], references: [categoria_id])
@@ -66,14 +66,14 @@ model Fornecedor {
   fornecedor_id Int      @id @default(autoincrement())
   nome_fornecedor String
   telefone        String
-  email           String
+  email           String @unique
   endereco        String
   produtos        Produto[] // 1:n relation with Produto
 }
 
 model Categoria_Produto {
   categoria_id Int       @id @default(autoincrement())
-  nome_categoria String
+  nome_categoria String  @unique
   produtos       Produto[] // 1:n relation with Produto
 }
 

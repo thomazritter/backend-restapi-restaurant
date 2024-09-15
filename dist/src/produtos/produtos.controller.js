@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const produtos_service_1 = require("./produtos.service");
 const create_produto_dto_1 = require("./dto/create-produto.dto");
 const update_produto_dto_1 = require("./dto/update-produto.dto");
+const swagger_1 = require("@nestjs/swagger");
 let ProdutosController = class ProdutosController {
     constructor(produtosService) {
         this.produtosService = produtosService;
@@ -74,6 +75,7 @@ __decorate([
 ], ProdutosController.prototype, "remove", null);
 ProdutosController = __decorate([
     (0, common_1.Controller)('produtos'),
+    (0, swagger_1.ApiTags)('produtos'),
     __metadata("design:paramtypes", [produtos_service_1.ProdutosService])
 ], ProdutosController);
 exports.ProdutosController = ProdutosController;

@@ -10,12 +10,14 @@ exports.ItempedidoModule = void 0;
 const common_1 = require("@nestjs/common");
 const itempedido_service_1 = require("./itempedido.service");
 const itempedido_controller_1 = require("./itempedido.controller");
+const prisma_module_1 = require("../prisma/prisma.module");
 let ItempedidoModule = class ItempedidoModule {
 };
 ItempedidoModule = __decorate([
     (0, common_1.Module)({
         controllers: [itempedido_controller_1.ItempedidoController],
-        providers: [itempedido_service_1.ItempedidoService]
+        providers: [itempedido_service_1.ItempedidoService],
+        imports: [prisma_module_1.PrismaModule],
     })
 ], ItempedidoModule);
 exports.ItempedidoModule = ItempedidoModule;

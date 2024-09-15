@@ -7,6 +7,6 @@ export declare class FuncionariosService {
     create(createFuncionarioDto: CreateFuncionarioDto): import(".prisma/client").Prisma.Prisma__FuncionarioClient<import(".prisma/client").Funcionario, never>;
     findAll(): import(".prisma/client").PrismaPromise<import(".prisma/client").Funcionario[]>;
     findOne(funcionario_id: number): import(".prisma/client").Prisma.Prisma__FuncionarioClient<import(".prisma/client").Funcionario, never>;
-    update(id: number, updateFuncionarioDto: UpdateFuncionarioDto): string;
-    remove(id: number): string;
+    update(funcionario_id: number, updateFuncionarioDto: UpdateFuncionarioDto): import(".prisma/client").Prisma.Prisma__FuncionarioClient<import(".prisma/client").Funcionario, never>;
+    remove(funcionario_id: number): import(".prisma/client").Prisma.Prisma__FuncionarioClient<import(".prisma/client").Funcionario, never>;
 }

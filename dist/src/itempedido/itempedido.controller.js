@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const itempedido_service_1 = require("./itempedido.service");
 const create_itempedido_dto_1 = require("./dto/create-itempedido.dto");
 const update_itempedido_dto_1 = require("./dto/update-itempedido.dto");
+const swagger_1 = require("@nestjs/swagger");
 let ItempedidoController = class ItempedidoController {
     constructor(itempedidoService) {
         this.itempedidoService = itempedidoService;
@@ -74,6 +75,7 @@ __decorate([
 ], ItempedidoController.prototype, "remove", null);
 ItempedidoController = __decorate([
     (0, common_1.Controller)('itempedido'),
+    (0, swagger_1.ApiTags)('itempedido'),
     __metadata("design:paramtypes", [itempedido_service_1.ItempedidoService])
 ], ItempedidoController);
 exports.ItempedidoController = ItempedidoController;

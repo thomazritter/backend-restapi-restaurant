@@ -25,11 +25,14 @@ let FuncionariosService = class FuncionariosService {
     findOne(funcionario_id) {
         return this.prisma.funcionario.findUnique({ where: { funcionario_id } });
     }
-    update(id, updateFuncionarioDto) {
-        return `This action updates a #${id} funcionario`;
+    update(funcionario_id, updateFuncionarioDto) {
+        return this.prisma.funcionario.update({
+            where: { funcionario_id },
+            data: updateFuncionarioDto,
+        });
     }
-    remove(id) {
-        return `This action removes a #${id} funcionario`;
+    remove(funcionario_id) {
+        return this.prisma.funcionario.delete({ where: { funcionario_id } });
     }
 };
 FuncionariosService = __decorate([

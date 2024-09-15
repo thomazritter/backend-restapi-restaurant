@@ -5,23 +5,28 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class PedidosService {
+  constructor(private prisma: PrismaService) {}
+
   create(createPedidoDto: CreatePedidoDto) {
-    return 'This action adds a new pedido';
+    return this.prisma.pedido.create({ data: createPedidoDto });
   }
 
   findAll() {
-    return `This action returns all pedidos`;
+    return this.prisma.pedido.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} pedido`;
+  findOne(pedido_id: number) {
+    return this.prisma.pedido.findUnique({ where: { pedido_id }});
   }
 
-  update(id: number, updatePedidoDto: UpdatePedidoDto) {
-    return `This action updates a #${id} pedido`;
+  update(pedido_id: number, updatePedidoDto: UpdatePedidoDto) {
+    return this.prisma.pedido.update({
+      where: { pedido_id },
+      data: updatePedidoDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} pedido`;
+  remove(pedido_id: number) {
+    return this.prisma.pedido.delete({ where: { pedido_id }});
   }
 }

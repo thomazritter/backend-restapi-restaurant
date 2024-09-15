@@ -2,10 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { FuncionariosService } from './funcionarios.service';
 import { CreateFuncionarioDto } from './dto/create-funcionario.dto';
 import { UpdateFuncionarioDto } from './dto/update-funcionario.dto';
-
-// dto stands for data transfer object
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('funcionarios')
+@ApiTags('funcionarios')
 export class FuncionariosController {
   constructor(private readonly funcionariosService: FuncionariosService) {}
 

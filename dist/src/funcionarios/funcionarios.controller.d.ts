@@ -6,5 +6,5 @@ export declare class FuncionariosController {
     create(createFuncionarioDto: CreateFuncionarioDto): import(".prisma/client").Prisma.Prisma__FuncionarioClient<import(".prisma/client").Funcionario, never>;
     findAll(): import(".prisma/client").PrismaPromise<import(".prisma/client").Funcionario[]>;
     findOne(id: string): import(".prisma/client").Prisma.Prisma__FuncionarioClient<import(".prisma/client").Funcionario, never>;
-    remove(id: string): string;
+    remove(id: string): import(".prisma/client").Prisma.Prisma__FuncionarioClient<import(".prisma/client").Funcionario, never>;
 }

@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const clientes_service_1 = require("./clientes.service");
 const create_cliente_dto_1 = require("./dto/create-cliente.dto");
 const update_cliente_dto_1 = require("./dto/update-cliente.dto");
+const swagger_1 = require("@nestjs/swagger");
 let ClientesController = class ClientesController {
     constructor(clientesService) {
         this.clientesService = clientesService;
@@ -74,6 +75,7 @@ __decorate([
 ], ClientesController.prototype, "remove", null);
 ClientesController = __decorate([
     (0, common_1.Controller)('clientes'),
+    (0, swagger_1.ApiTags)('clientes'),
     __metadata("design:paramtypes", [clientes_service_1.ClientesService])
 ], ClientesController);
 exports.ClientesController = ClientesController;

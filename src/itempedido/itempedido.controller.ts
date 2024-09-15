@@ -2,8 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ItempedidoService } from './itempedido.service';
 import { CreateItemPedidoDto } from './dto/create-itempedido.dto';
 import { UpdateItemPedidoDto } from './dto/update-itempedido.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('itempedido')
+@ApiTags('itempedido')
 export class ItempedidoController {
   constructor(private readonly itempedidoService: ItempedidoService) {}
 

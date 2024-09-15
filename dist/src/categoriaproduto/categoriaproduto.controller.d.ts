@@ -4,9 +4,9 @@ import { UpdateCategoriaProdutoDto } from './dto/update-categoriaproduto.dto';
 export declare class CategoriaprodutoController {
     private readonly categoriaprodutoService;
     constructor(categoriaprodutoService: CategoriaprodutoService);
-    create(createCategoriaprodutoDto: CreateCategoriaProdutoDto): string;
-    findAll(): string;
-    findOne(id: string): string;
-    update(id: string, updateCategoriaprodutoDto: UpdateCategoriaProdutoDto): string;
-    remove(id: string): string;
+    create(createCategoriaprodutoDto: CreateCategoriaProdutoDto): import(".prisma/client").Prisma.Prisma__Categoria_ProdutoClient<import(".prisma/client").Categoria_Produto, never>;
+    findAll(): import(".prisma/client").PrismaPromise<import(".prisma/client").Categoria_Produto[]>;
+    findOne(id: string): import(".prisma/client").Prisma.Prisma__Categoria_ProdutoClient<import(".prisma/client").Categoria_Produto, never>;
+    update(id: string, updateCategoriaprodutoDto: UpdateCategoriaProdutoDto): import(".prisma/client").Prisma.Prisma__Categoria_ProdutoClient<import(".prisma/client").Categoria_Produto, never>;
+    remove(id: string): import(".prisma/client").Prisma.Prisma__Categoria_ProdutoClient<import(".prisma/client").Categoria_Produto, never>;
 }

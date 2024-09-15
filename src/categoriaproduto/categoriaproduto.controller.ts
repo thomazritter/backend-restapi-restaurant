@@ -2,8 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { CategoriaprodutoService } from './categoriaproduto.service';
 import { CreateCategoriaProdutoDto } from './dto/create-categoriaproduto.dto';
 import { UpdateCategoriaProdutoDto } from './dto/update-categoriaproduto.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('categoriaproduto')
+@ApiTags('categoriaproduto')
 export class CategoriaprodutoController {
   constructor(private readonly categoriaprodutoService: CategoriaprodutoService) {}
 

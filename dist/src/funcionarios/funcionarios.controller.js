@@ -16,6 +16,7 @@ exports.FuncionariosController = void 0;
 const common_1 = require("@nestjs/common");
 const funcionarios_service_1 = require("./funcionarios.service");
 const create_funcionario_dto_1 = require("./dto/create-funcionario.dto");
+const swagger_1 = require("@nestjs/swagger");
 let FuncionariosController = class FuncionariosController {
     constructor(funcionariosService) {
         this.funcionariosService = funcionariosService;
@@ -62,6 +63,7 @@ __decorate([
 ], FuncionariosController.prototype, "remove", null);
 FuncionariosController = __decorate([
     (0, common_1.Controller)('funcionarios'),
+    (0, swagger_1.ApiTags)('funcionarios'),
     __metadata("design:paramtypes", [funcionarios_service_1.FuncionariosService])
 ], FuncionariosController);
 exports.FuncionariosController = FuncionariosController;
