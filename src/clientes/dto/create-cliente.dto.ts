@@ -1,5 +1,4 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { CreatePedidoDto } from "src/pedidos/dto/create-pedido.dto";
 
 export class CreateClienteDto {
     @ApiProperty()
@@ -11,9 +10,6 @@ export class CreateClienteDto {
     @ApiProperty()
     email: string;
 
-    @ApiProperty( {uniqueItems: true } )
+    @ApiProperty()
     endereco: string;
-
-    @ApiProperty({ type: [CreatePedidoDto], isArray: true })
-    pedidos: CreatePedidoDto[];
 }

@@ -1,12 +1,15 @@
 import { ApiProperty } from "@nestjs/swagger";
 
-export class CreateItempedidoDto {
+export class CreateItemPedidoDto {
     @ApiProperty()
-    data_pedido: string;
+    data_pedido: Date;
 
     @ApiProperty()
     valor_total: number;
 
-    @ApiProperty()  // cliente_id from Cliente model
-    produto_id: number;
+    @ApiProperty()
+    produto_id: number; // foreign key to Produto
+
+    @ApiProperty()
+    pedido_id: number; // foreign key to Pedido
 }

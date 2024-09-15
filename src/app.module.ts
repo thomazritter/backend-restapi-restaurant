@@ -8,12 +8,13 @@ import { ClientesModule } from './clientes/clientes.module';
 import { ProdutosModule } from './produtos/produtos.module';
 import { FornecedoresModule } from './fornecedores/fornecedores.module';
 import { ItempedidoModule } from './itempedido/itempedido.module';
+import { CategoriaprodutoModule } from './categoriaproduto/categoriaproduto.module';
 
 // module serve as a encapsulator
 // encapsulate a feature, such as user management
 
 @Module({
-  imports: [PrismaModule, FuncionariosModule, PedidosModule, ClientesModule, ProdutosModule, FornecedoresModule, ItempedidoModule],
+  imports: [PrismaModule, FuncionariosModule, PedidosModule, ClientesModule, ProdutosModule, FornecedoresModule, ItempedidoModule, CategoriaprodutoModule],
   controllers: [AppController],
   providers: [AppService],
 })

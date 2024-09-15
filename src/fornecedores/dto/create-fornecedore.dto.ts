@@ -1,7 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { CreateProdutoDto } from "src/produtos/dto/create-produto.dto";
 
-export class CreateFornecedoreDto {
+export class CreateFornecedorDto {
     @ApiProperty()
     nome_fornecedor: string;
 
@@ -11,9 +10,6 @@ export class CreateFornecedoreDto {
     @ApiProperty()
     email: string;
 
-    @ApiProperty( {uniqueItems: true } )
+    @ApiProperty()
     endereco: string;
-
-    @ApiProperty({ type: [CreateProdutoDto], isArray: true })
-    produtos: CreateProdutoDto[];
 }

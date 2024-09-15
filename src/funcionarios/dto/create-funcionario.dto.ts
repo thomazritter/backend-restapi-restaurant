@@ -1,8 +1,4 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { CreatePedidoDto } from 'src/pedidos/dto/create-pedido.dto';  // Adjust path as necessary
-
-
-// above import is required so we can see swagger showing all of this
 
 export class CreateFuncionarioDto {
     @ApiProperty()
@@ -14,12 +10,9 @@ export class CreateFuncionarioDto {
     @ApiProperty()
     telefone: string;
 
-    @ApiProperty( {uniqueItems: true } )
+    @ApiProperty()
     email: string;
 
     @ApiProperty()
     endereco: string;
-
-    @ApiProperty({ type: [CreatePedidoDto], isArray: true })
-    pedidos: CreateFuncionarioDto[];
 }
