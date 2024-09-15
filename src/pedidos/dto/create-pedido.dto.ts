@@ -1,21 +1,20 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
+import { CreateItempedidoDto } from 'src/itempedido/dto/create-itempedido.dto';  // Adjust path as necessary
+
 
 export class CreatePedidoDto {
-    @ApiProperty()
-    data_pedido: string;
+  @ApiProperty()
+  data_pedido: string;
 
-    @ApiProperty()
-    valor_total: number;
+  @ApiProperty()
+  valor_total: number;
 
-    @ApiProperty()
-    client: string;
+  @ApiProperty()  // cliente_id from Cliente model
+  cliente_id: number;
 
-    @ApiProperty( {uniqueItems: true } )
-    email: string;
+  @ApiProperty()  // funcionario_id from Funcionario model
+  funcionario_id: number;
 
-    @ApiProperty()
-    endereco: string;
-
-    @ApiProperty({ type: [CreatePedidoDto], isArray: true })
-    pedidos: CreatePedidoDto[];
+  @ApiProperty({ type: [CreateItempedidoDto], isArray: true})  // List of item IDs
+  itens_pedido: CreateItempedidoDto[];  // Assuming you only pass the IDs of Item_Pedido
 }
