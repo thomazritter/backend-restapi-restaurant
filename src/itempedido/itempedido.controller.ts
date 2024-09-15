@@ -1,14 +1,14 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ItempedidoService } from './itempedido.service';
-import { CreateItempedidoDto } from './dto/create-itempedido.dto';
-import { UpdateItempedidoDto } from './dto/update-itempedido.dto';
+import { CreateItemPedidoDto } from './dto/create-itempedido.dto';
+import { UpdateItemPedidoDto } from './dto/update-itempedido.dto';
 
 @Controller('itempedido')
 export class ItempedidoController {
   constructor(private readonly itempedidoService: ItempedidoService) {}
 
   @Post()
-  create(@Body() createItempedidoDto: CreateItempedidoDto) {
+  create(@Body() createItempedidoDto: CreateItemPedidoDto) {
     return this.itempedidoService.create(createItempedidoDto);
   }
 
@@ -23,7 +23,7 @@ export class ItempedidoController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateItempedidoDto: UpdateItempedidoDto) {
+  update(@Param('id') id: string, @Body() updateItempedidoDto: UpdateItemPedidoDto) {
     return this.itempedidoService.update(+id, updateItempedidoDto);
   }
 

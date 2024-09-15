@@ -1,9 +1,9 @@
-import { CreateFornecedoreDto } from './dto/create-fornecedore.dto';
-import { UpdateFornecedoreDto } from './dto/update-fornecedore.dto';
+import { CreateFornecedorDto } from './dto/create-fornecedore.dto';
+import { UpdateFornecedorDto } from './dto/update-fornecedore.dto';
 export declare class FornecedoresService {
-    create(createFornecedoreDto: CreateFornecedoreDto): string;
+    create(createFornecedoreDto: CreateFornecedorDto): string;
     findAll(): string;
     findOne(id: number): string;
-    update(id: number, updateFornecedoreDto: UpdateFornecedoreDto): string;
+    update(id: number, updateFornecedoreDto: UpdateFornecedorDto): string;
     remove(id: number): string;
 }

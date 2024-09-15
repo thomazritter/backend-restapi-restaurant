@@ -1,4 +1,4 @@
-import { PartialType } from '@nestjs/swagger';
-import { CreateFornecedoreDto } from './create-fornecedore.dto';
+import { PartialType } from "@nestjs/swagger";
+import { CreateFornecedorDto } from "./create-fornecedore.dto";
 
-export class UpdateFornecedoreDto extends PartialType(CreateFornecedoreDto) {}
+export class UpdateFornecedorDto extends PartialType(CreateFornecedorDto) {}

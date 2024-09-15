@@ -41,7 +41,7 @@ __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_fornecedore_dto_1.CreateFornecedoreDto]),
+    __metadata("design:paramtypes", [create_fornecedore_dto_1.CreateFornecedorDto]),
     __metadata("design:returntype", void 0)
 ], FornecedoresController.prototype, "create", null);
 __decorate([
@@ -62,7 +62,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_fornecedore_dto_1.UpdateFornecedoreDto]),
+    __metadata("design:paramtypes", [String, update_fornecedore_dto_1.UpdateFornecedorDto]),
     __metadata("design:returntype", void 0)
 ], FornecedoresController.prototype, "update", null);
 __decorate([

@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateFuncionarioDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
-const create_pedido_dto_1 = require("../../pedidos/dto/create-pedido.dto");
 class CreateFuncionarioDto {
 }
 __decorate([
@@ -27,16 +26,12 @@ __decorate([
     __metadata("design:type", String)
 ], CreateFuncionarioDto.prototype, "telefone", void 0);
 __decorate([
-    (0, swagger_1.ApiProperty)({ uniqueItems: true }),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], CreateFuncionarioDto.prototype, "email", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], CreateFuncionarioDto.prototype, "endereco", void 0);
-__decorate([
-    (0, swagger_1.ApiProperty)({ type: [create_pedido_dto_1.CreatePedidoDto], isArray: true }),
-    __metadata("design:type", Array)
-], CreateFuncionarioDto.prototype, "pedidos", void 0);
 exports.CreateFuncionarioDto = CreateFuncionarioDto;
 //# sourceMappingURL=create-funcionario.dto.js.map

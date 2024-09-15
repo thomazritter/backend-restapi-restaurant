@@ -1,1 +1,1 @@
-{"version":3,"file":"update-fornecedore.dto.js","sourceRoot":"","sources":["../../../../src/fornecedores/dto/update-fornecedore.dto.ts"],"names":[],"mappings":";;;AAAA,6CAA8C;AAC9C,qEAAgE;AAEhE,MAAa,oBAAqB,SAAQ,IAAA,qBAAW,EAAC,6CAAoB,CAAC;CAAG;AAA9E,oDAA8E"}
+{"version":3,"file":"update-fornecedore.dto.js","sourceRoot":"","sources":["../../../../src/fornecedores/dto/update-fornecedore.dto.ts"],"names":[],"mappings":";;;AAAA,6CAA8C;AAC9C,qEAA+D;AAE/D,MAAa,mBAAoB,SAAQ,IAAA,qBAAW,EAAC,4CAAmB,CAAC;CAAG;AAA5E,kDAA4E"}

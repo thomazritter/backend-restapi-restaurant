@@ -17,7 +17,7 @@ let FuncionariosService = class FuncionariosService {
         this.prisma = prisma;
     }
     create(createFuncionarioDto) {
-        return 'This action adds a new funcionario';
+        return this.prisma.funcionario.create({ data: createFuncionarioDto });
     }
     findAll() {
         return this.prisma.funcionario.findMany();

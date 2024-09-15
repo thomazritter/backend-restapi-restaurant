@@ -1,5 +1,5 @@
-import { CreateFornecedoreDto } from './create-fornecedore.dto';
-declare const UpdateFornecedoreDto_base: import("@nestjs/common").Type<Partial<CreateFornecedoreDto>>;
-export declare class UpdateFornecedoreDto extends UpdateFornecedoreDto_base {
+import { CreateFornecedorDto } from "./create-fornecedore.dto";
+declare const UpdateFornecedorDto_base: import("@nestjs/common").Type<Partial<CreateFornecedorDto>>;
+export declare class UpdateFornecedorDto extends UpdateFornecedorDto_base {
 }
 export {};
