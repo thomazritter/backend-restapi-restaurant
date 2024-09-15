@@ -3,6 +3,8 @@ import { FuncionariosService } from './funcionarios.service';
 import { CreateFuncionarioDto } from './dto/create-funcionario.dto';
 import { UpdateFuncionarioDto } from './dto/update-funcionario.dto';
 
+// dto stands for data transfer object
+
 @Controller('funcionarios')
 export class FuncionariosController {
   constructor(private readonly funcionariosService: FuncionariosService) {}

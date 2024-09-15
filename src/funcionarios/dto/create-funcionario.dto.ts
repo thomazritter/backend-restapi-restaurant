@@ -1,26 +1,25 @@
 import { ApiProperty } from "@nestjs/swagger";
+import { CreatePedidoDto } from 'src/pedidos/dto/create-pedido.dto';  // Adjust path as necessary
+
 
 // above import is required so we can see swagger showing all of this
 
 export class CreateFuncionarioDto {
     @ApiProperty()
-    nome_funcionario: String;
+    nome_funcionario: string;
 
     @ApiProperty()
-    cargo: String;
+    cargo: string;
 
     @ApiProperty()
-    telefone: String;
+    telefone: string;
 
     @ApiProperty( {uniqueItems: true } )
-    email: String;
+    email: string;
 
     @ApiProperty()
-    endereco: String;
+    endereco: string;
 
-    @ApiProperty
-
-
-
-
+    @ApiProperty({ type: [CreatePedidoDto], isArray: true })
+    pedidos: CreateFuncionarioDto[];
 }

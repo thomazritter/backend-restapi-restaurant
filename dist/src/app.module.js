@@ -12,11 +12,15 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const prisma_module_1 = require("./prisma/prisma.module");
 const funcionarios_module_1 = require("./funcionarios/funcionarios.module");
+const pedidos_module_1 = require("./pedidos/pedidos.module");
+const clientes_module_1 = require("./clientes/clientes.module");
+const produtos_module_1 = require("./produtos/produtos.module");
+const fornecedores_module_1 = require("./fornecedores/fornecedores.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [prisma_module_1.PrismaModule, funcionarios_module_1.FuncionariosModule],
+        imports: [prisma_module_1.PrismaModule, funcionarios_module_1.FuncionariosModule, pedidos_module_1.PedidosModule, clientes_module_1.ClientesModule, produtos_module_1.ProdutosModule, fornecedores_module_1.FornecedoresModule],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

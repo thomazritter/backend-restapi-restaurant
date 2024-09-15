@@ -8,7 +8,7 @@ export class FuncionariosService {
   constructor(private prisma: PrismaService) {}
 
   create(createFuncionarioDto: CreateFuncionarioDto) {
-    return 'This action adds a new funcionario';
+    return this.prisma.funcionario.create({ data: createFuncionarioDto});
   }
 
   findAll() {
