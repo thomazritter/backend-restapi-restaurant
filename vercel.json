@@ -1,0 +1,15 @@
+{
+    "builds": [
+      {
+        "src": "Dockerfile",
+        "use": "@vercel/docker"
+      }
+    ],
+    "env": {
+      "DATABASE_URL": "postgresql://postgres:postgres@db:5432/mydatabase"
+    },
+    "routes": [
+      { "src": "/(.*)", "dest": "/" }
+    ]
+  }
+  
