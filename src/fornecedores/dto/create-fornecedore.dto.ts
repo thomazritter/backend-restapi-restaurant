@@ -12,4 +12,7 @@ export class CreateFornecedorDto {
 
     @ApiProperty()
     endereco: string;
+
+    @ApiProperty()
+    produtos?: number[];
 }
