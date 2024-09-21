@@ -7,8 +7,37 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class ProdutosService {
   constructor(private prisma: PrismaService) {}
 
+  update(produto_id: number, updateProdutoDto: UpdateProdutoDto) {
+    const { fornecedores, ...produtoData } = updateProdutoDto;
+
+    return this.prisma.produto.update({
+      where: { produto_id },
+      data: {
+        ...produtoData,
+        fornecedores: fornecedores
+          ? {
+              set: fornecedores.map((fornecedor) => ({
+                fornecedor_id: fornecedor.fornecedor_id,
+              })),
+            }
+          : undefined, // Only update fornecedores if provided
+      },
+    });
+  }
+
   create(createProdutoDto: CreateProdutoDto) {
-    return this.prisma.produto.create({ data: createProdutoDto });
+    const { fornecedores, ...produtoData } = createProdutoDto;
+    
+    return this.prisma.produto.create({
+      data: {
+        ...produtoData,
+        fornecedores: {
+          connect: fornecedores.map(fornecedor => ({
+            fornecedor_id: fornecedor.fornecedor_id,
+          })),
+        },
+      },
+    });
   }
 
   findAll() {
@@ -17,13 +46,6 @@ export class ProdutosService {
 
   findOne(produto_id: number) {
     return this.prisma.produto.findUnique({ where: { produto_id }});
-  }
-
-  update(produto_id: number, updateProdutoDto: UpdateProdutoDto) {
-    return this.prisma.produto.update({
-      where: { produto_id },
-      data: updateProdutoDto,
-    });
   }
 
   remove(produto_id: number) {

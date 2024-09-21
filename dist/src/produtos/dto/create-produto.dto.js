@@ -31,7 +31,7 @@ __decorate([
 ], CreateProdutoDto.prototype, "categoria_id", void 0);
 __decorate([
     (0, swagger_1.ApiProperty)(),
-    __metadata("design:type", Number)
-], CreateProdutoDto.prototype, "fornecedor_id", void 0);
+    __metadata("design:type", Array)
+], CreateProdutoDto.prototype, "fornecedores", void 0);
 exports.CreateProdutoDto = CreateProdutoDto;
 //# sourceMappingURL=create-produto.dto.js.map

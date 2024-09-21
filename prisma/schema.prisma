@@ -57,17 +57,17 @@ model Produto {
   preco        Float
   categoria    Categoria_Produto @relation(fields: [categoria_id], references: [categoria_id])
   categoria_id Int
-  itens_pedido Item_Pedido[]    // 1:n relation with Item_Pedido
-  fornecedores  Fornecedor[]     @relation("ProdutoFornecedor")
+  fornecedores Fornecedor[]      @relation("ProdutoFornecedores")  // n:n relation with Fornecedor
+  itens_pedido Item_Pedido[]     // 1:n relation with Item_Pedido
 }
 
 model Fornecedor {
-  fornecedor_id Int      @id @default(autoincrement())
+  fornecedor_id   Int      @id @default(autoincrement())
   nome_fornecedor String
   telefone        String
   email           String @unique
   endereco        String
-  produtos        Produto[] @relation("ProdutoFornecedor")
+  produtos        Produto[] @relation("ProdutoFornecedores") // n:n relation with Produto
 }
 
 

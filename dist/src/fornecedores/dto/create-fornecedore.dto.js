@@ -29,5 +29,9 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], CreateFornecedorDto.prototype, "endereco", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", Array)
+], CreateFornecedorDto.prototype, "produtos", void 0);
 exports.CreateFornecedorDto = CreateFornecedorDto;
 //# sourceMappingURL=create-fornecedore.dto.js.map

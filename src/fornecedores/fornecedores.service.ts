@@ -7,8 +7,19 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class FornecedoresService {
   constructor(private prisma: PrismaService) {}
 
-  create(createFornecedoreDto: CreateFornecedorDto) {
-    return this.prisma.fornecedor.create({ data: createFornecedoreDto });
+  create(createFornecedorDto: CreateFornecedorDto) {
+    const { produtos, ...fornecedorData } = createFornecedorDto;
+  
+    return this.prisma.fornecedor.create({
+      data: {
+        ...fornecedorData,
+        produtos: produtos
+          ? {
+              connect: produtos.map(produto => ({ produto_id: produto.produto_id })),
+            }
+          : undefined,
+      },
+    });
   }
 
   findAll() {
@@ -19,10 +30,19 @@ export class FornecedoresService {
     return this.prisma.fornecedor.findUnique({ where: { fornecedor_id }});
   }
 
-  update(fornecedor_id: number, updateFornecedoreDto: UpdateFornecedorDto) {
+  update(fornecedor_id: number, updateFornecedorDto: UpdateFornecedorDto) {
+    const { produtos, ...fornecedorData } = updateFornecedorDto;
+  
     return this.prisma.fornecedor.update({
       where: { fornecedor_id },
-      data: updateFornecedoreDto,
+      data: {
+        ...fornecedorData,
+        produtos: produtos
+          ? {
+              set: produtos.map(produto => ({ produto_id: produto.produto_id })),
+            }
+          : undefined,
+      },
     });
   }
 
