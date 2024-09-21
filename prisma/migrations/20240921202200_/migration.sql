@@ -50,7 +50,6 @@ CREATE TABLE "Produto" (
     "descricao" TEXT NOT NULL,
     "preco" DOUBLE PRECISION NOT NULL,
     "categoria_id" INTEGER NOT NULL,
-    "fornecedor_id" INTEGER NOT NULL,
 
     CONSTRAINT "Produto_pkey" PRIMARY KEY ("produto_id")
 );
@@ -74,6 +73,12 @@ CREATE TABLE "Categoria_Produto" (
     CONSTRAINT "Categoria_Produto_pkey" PRIMARY KEY ("categoria_id")
 );
 
+-- CreateTable
+CREATE TABLE "_ProdutoFornecedor" (
+    "A" INTEGER NOT NULL,
+    "B" INTEGER NOT NULL
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Funcionario_email_key" ON "Funcionario"("email");
 
@@ -88,6 +93,12 @@ CREATE UNIQUE INDEX "Fornecedor_email_key" ON "Fornecedor"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Categoria_Produto_nome_categoria_key" ON "Categoria_Produto"("nome_categoria");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_ProdutoFornecedor_AB_unique" ON "_ProdutoFornecedor"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_ProdutoFornecedor_B_index" ON "_ProdutoFornecedor"("B");
 
 -- AddForeignKey
 ALTER TABLE "Pedido" ADD CONSTRAINT "Pedido_cliente_id_fkey" FOREIGN KEY ("cliente_id") REFERENCES "Cliente"("cliente_id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -105,4 +116,7 @@ ALTER TABLE "Item_Pedido" ADD CONSTRAINT "Item_Pedido_pedido_id_fkey" FOREIGN KE
 ALTER TABLE "Produto" ADD CONSTRAINT "Produto_categoria_id_fkey" FOREIGN KEY ("categoria_id") REFERENCES "Categoria_Produto"("categoria_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Produto" ADD CONSTRAINT "Produto_fornecedor_id_fkey" FOREIGN KEY ("fornecedor_id") REFERENCES "Fornecedor"("fornecedor_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "_ProdutoFornecedor" ADD CONSTRAINT "_ProdutoFornecedor_A_fkey" FOREIGN KEY ("A") REFERENCES "Fornecedor"("fornecedor_id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_ProdutoFornecedor" ADD CONSTRAINT "_ProdutoFornecedor_B_fkey" FOREIGN KEY ("B") REFERENCES "Produto"("produto_id") ON DELETE CASCADE ON UPDATE CASCADE;

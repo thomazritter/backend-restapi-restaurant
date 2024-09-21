@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
-// initialize the Prisma Client
+// Initialize the Prisma Client
 const prisma = new PrismaClient();
 
 async function main() {
@@ -13,6 +13,17 @@ async function main() {
       telefone: '111-222-3333',
       email: 'fornecedor1@supplies.com',
       endereco: 'Rua dos Fornecedores, 12',
+    },
+  });
+
+  const fornecedor2 = await prisma.fornecedor.upsert({
+    where: { email: 'fornecedor2@supplies.com' },
+    update: {},
+    create: {
+      nome_fornecedor: 'Supplier B',
+      telefone: '444-555-6666',
+      email: 'fornecedor2@supplies.com',
+      endereco: 'Rua dos Fornecedores, 34',
     },
   });
 
@@ -34,7 +45,7 @@ async function main() {
       descricao: 'Refrigerante de cola',
       preco: 5.0,
       categoria: { connect: { categoria_id: categoria1.categoria_id } }, // Foreign key reference to Categoria_Produto
-      fornecedor: { connect: { fornecedor_id: fornecedor1.fornecedor_id } }, // Foreign key reference to Fornecedor
+      fornecedores: { connect: [{ fornecedor_id: fornecedor1.fornecedor_id }, { fornecedor_id: fornecedor2.fornecedor_id }] }, // Connect multiple fornecedores
     },
   });
 
@@ -87,6 +98,7 @@ async function main() {
 
   console.log({
     fornecedor1,
+    fornecedor2,
     categoria1,
     produto1,
     cliente1,

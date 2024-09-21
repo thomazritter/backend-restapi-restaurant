@@ -13,6 +13,16 @@ async function main() {
             endereco: 'Rua dos Fornecedores, 12',
         },
     });
+    const fornecedor2 = await prisma.fornecedor.upsert({
+        where: { email: 'fornecedor2@supplies.com' },
+        update: {},
+        create: {
+            nome_fornecedor: 'Supplier B',
+            telefone: '444-555-6666',
+            email: 'fornecedor2@supplies.com',
+            endereco: 'Rua dos Fornecedores, 34',
+        },
+    });
     const categoria1 = await prisma.categoria_Produto.upsert({
         where: { nome_categoria: 'Bebidas' },
         update: {},
@@ -28,7 +38,7 @@ async function main() {
             descricao: 'Refrigerante de cola',
             preco: 5.0,
             categoria: { connect: { categoria_id: categoria1.categoria_id } },
-            fornecedor: { connect: { fornecedor_id: fornecedor1.fornecedor_id } },
+            fornecedores: { connect: [{ fornecedor_id: fornecedor1.fornecedor_id }, { fornecedor_id: fornecedor2.fornecedor_id }] },
         },
     });
     const cliente1 = await prisma.cliente.upsert({
@@ -70,6 +80,7 @@ async function main() {
     });
     console.log({
         fornecedor1,
+        fornecedor2,
         categoria1,
         produto1,
         cliente1,
