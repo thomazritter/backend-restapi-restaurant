@@ -7,38 +7,48 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class ProdutosService {
   constructor(private prisma: PrismaService) {}
 
-  update(produto_id: number, updateProdutoDto: UpdateProdutoDto) {
-    const { fornecedores, ...produtoData } = updateProdutoDto;
+  
+update(produto_id: number, updateProdutoDto: UpdateProdutoDto) {
+  const { fornecedores, categoria_id, ...produtoData } = updateProdutoDto;
 
-    return this.prisma.produto.update({
-      where: { produto_id },
-      data: {
-        ...produtoData,
-        fornecedores: fornecedores
-          ? {
-              set: fornecedores.map((fornecedor) => ({
-                fornecedor_id: fornecedor.fornecedor_id,
-              })),
-            }
-          : undefined, // Only update fornecedores if provided
+  return this.prisma.produto.update({
+    where: { produto_id },
+    data: {
+      ...produtoData,
+      // Handle updating the category
+      categoria: {
+        connect: { categoria_id },  // Connect to the existing category
       },
-    });
-  }
+      // Handle connecting the suppliers
+      fornecedores: {
+        connect: fornecedores?.map(fornecedor => ({
+          fornecedor_id: fornecedor.fornecedor_id,
+        })),
+        disconnect: [], // If you want to disconnect previously connected suppliers, you can specify them here.
+      },
+    },
+  });
+}
 
-  create(createProdutoDto: CreateProdutoDto) {
-    const { fornecedores, ...produtoData } = createProdutoDto;
-    
-    return this.prisma.produto.create({
-      data: {
-        ...produtoData,
-        fornecedores: {
-          connect: fornecedores.map(fornecedor => ({
-            fornecedor_id: fornecedor.fornecedor_id,
-          })),
-        },
+create(createProdutoDto: CreateProdutoDto) {
+  const { fornecedores, categoria_id, ...produtoData } = createProdutoDto;
+
+  return this.prisma.produto.create({
+    data: {
+      ...produtoData,
+      // Handle the category connection
+      categoria: {
+        connect: { categoria_id }, // Assuming categoria_id is a number
       },
-    });
-  }
+      // Handle the suppliers connection
+      fornecedores: {
+        connect: fornecedores?.map(fornecedor => ({
+          fornecedor_id: fornecedor.fornecedor_id, // Ensure this is a number
+        })) || [], // Default to an empty array if fornecedores is undefined
+      },
+    },
+  });
+}
 
   findAll() {
     return this.prisma.produto.findMany();

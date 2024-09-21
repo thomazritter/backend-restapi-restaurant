@@ -28,25 +28,28 @@ let ProdutosService = class ProdutosService {
         this.prisma = prisma;
     }
     update(produto_id, updateProdutoDto) {
-        const { fornecedores } = updateProdutoDto, produtoData = __rest(updateProdutoDto, ["fornecedores"]);
+        const { fornecedores, categoria_id } = updateProdutoDto, produtoData = __rest(updateProdutoDto, ["fornecedores", "categoria_id"]);
         return this.prisma.produto.update({
             where: { produto_id },
-            data: Object.assign(Object.assign({}, produtoData), { fornecedores: fornecedores
-                    ? {
-                        set: fornecedores.map((fornecedor) => ({
-                            fornecedor_id: fornecedor.fornecedor_id,
-                        })),
-                    }
-                    : undefined }),
+            data: Object.assign(Object.assign({}, produtoData), { categoria: {
+                    connect: { categoria_id },
+                }, fornecedores: {
+                    connect: fornecedores === null || fornecedores === void 0 ? void 0 : fornecedores.map(fornecedor => ({
+                        fornecedor_id: fornecedor.fornecedor_id,
+                    })),
+                    disconnect: [],
+                } }),
         });
     }
     create(createProdutoDto) {
-        const { fornecedores } = createProdutoDto, produtoData = __rest(createProdutoDto, ["fornecedores"]);
+        const { fornecedores, categoria_id } = createProdutoDto, produtoData = __rest(createProdutoDto, ["fornecedores", "categoria_id"]);
         return this.prisma.produto.create({
-            data: Object.assign(Object.assign({}, produtoData), { fornecedores: {
-                    connect: fornecedores.map(fornecedor => ({
+            data: Object.assign(Object.assign({}, produtoData), { categoria: {
+                    connect: { categoria_id },
+                }, fornecedores: {
+                    connect: (fornecedores === null || fornecedores === void 0 ? void 0 : fornecedores.map(fornecedor => ({
                         fornecedor_id: fornecedor.fornecedor_id,
-                    })),
+                    }))) || [],
                 } }),
         });
     }

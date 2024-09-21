@@ -3,5 +3,7 @@ export declare class CreateFornecedorDto {
     telefone: string;
     email: string;
     endereco: string;
-    produtos: number[];
+    produtos?: {
+        produto_id: number;
+    }[];
 }
