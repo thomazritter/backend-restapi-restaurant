@@ -23,12 +23,22 @@ export class FornecedoresService {
   }
 
   findAll() {
-    return this.prisma.fornecedor.findMany();
-  }
+    return this.prisma.fornecedor.findMany({
+      include: {
+        produtos: true // Include related products for each supplier
+      }
+    });
+  }  
 
   findOne(fornecedor_id: number) {
-    return this.prisma.fornecedor.findUnique({ where: { fornecedor_id }});
+    return this.prisma.fornecedor.findUnique({
+      where: { fornecedor_id },
+      include: {
+        produtos: true // Include related products for the specific supplier
+      }
+    });
   }
+  
 
   update(fornecedor_id: number, updateFornecedorDto: UpdateFornecedorDto) {
     const { produtos, ...fornecedorData } = updateFornecedorDto;

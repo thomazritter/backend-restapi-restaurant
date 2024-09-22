@@ -14,5 +14,5 @@ export class CreateProdutoDto {
     categoria_id: number; // foreign key to Categoria_Produto
 
     @ApiProperty()
-    fornecedores: { fornecedor_id: number }[];
+    fornecedores: number[];
 }

@@ -16,6 +16,7 @@ exports.FuncionariosController = void 0;
 const common_1 = require("@nestjs/common");
 const funcionarios_service_1 = require("./funcionarios.service");
 const create_funcionario_dto_1 = require("./dto/create-funcionario.dto");
+const update_funcionario_dto_1 = require("./dto/update-funcionario.dto");
 const swagger_1 = require("@nestjs/swagger");
 let FuncionariosController = class FuncionariosController {
     constructor(funcionariosService) {
@@ -29,6 +30,9 @@ let FuncionariosController = class FuncionariosController {
     }
     findOne(id) {
         return this.funcionariosService.findOne(+id);
+    }
+    update(id, UpdateFuncionarioDto) {
+        return this.funcionariosService.update(+id, UpdateFuncionarioDto);
     }
     remove(id) {
         return this.funcionariosService.remove(+id);
@@ -54,6 +58,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], FuncionariosController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_funcionario_dto_1.UpdateFuncionarioDto]),
+    __metadata("design:returntype", void 0)
+], FuncionariosController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),

@@ -5,8 +5,12 @@ export declare class FornecedoresController {
     private readonly fornecedoresService;
     constructor(fornecedoresService: FornecedoresService);
     create(createFornecedoreDto: CreateFornecedorDto): import(".prisma/client").Prisma.Prisma__FornecedorClient<import(".prisma/client").Fornecedor, never>;
-    findAll(): import(".prisma/client").PrismaPromise<import(".prisma/client").Fornecedor[]>;
-    findOne(id: string): import(".prisma/client").Prisma.Prisma__FornecedorClient<import(".prisma/client").Fornecedor, never>;
+    findAll(): import(".prisma/client").PrismaPromise<(import(".prisma/client").Fornecedor & {
+        produtos: import(".prisma/client").Produto[];
+    })[]>;
+    findOne(id: string): import(".prisma/client").Prisma.Prisma__FornecedorClient<import(".prisma/client").Fornecedor & {
+        produtos: import(".prisma/client").Produto[];
+    }, never>;
     update(id: string, updateFornecedoreDto: UpdateFornecedorDto): import(".prisma/client").Prisma.Prisma__FornecedorClient<import(".prisma/client").Fornecedor, never>;
     remove(id: string): import(".prisma/client").Prisma.Prisma__FornecedorClient<import(".prisma/client").Fornecedor, never>;
 }

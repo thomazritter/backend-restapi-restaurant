@@ -8,27 +8,27 @@ export class ProdutosService {
   constructor(private prisma: PrismaService) {}
 
   
-update(produto_id: number, updateProdutoDto: UpdateProdutoDto) {
-  const { fornecedores, categoria_id, ...produtoData } = updateProdutoDto;
-
-  return this.prisma.produto.update({
-    where: { produto_id },
-    data: {
-      ...produtoData,
-      // Handle updating the category
-      categoria: {
-        connect: { categoria_id },  // Connect to the existing category
+  update(produto_id: number, updateProdutoDto: UpdateProdutoDto) {
+    const { fornecedores, categoria_id, ...produtoData } = updateProdutoDto;
+  
+    return this.prisma.produto.update({
+      where: { produto_id },
+      data: {
+        ...produtoData,
+        // Handle updating the category
+        categoria: {
+          connect: { categoria_id }, // Connect to the existing category
+        },
+        // Handle connecting and disconnecting the suppliers
+        fornecedores: fornecedores?.length > 0
+          ? {
+              set: fornecedores.map(fornecedor_id => ({ fornecedor_id })), // Set the new fornecedores list
+            }
+          : undefined, // Avoid resetting if fornecedores is not provided
       },
-      // Handle connecting the suppliers
-      fornecedores: {
-        connect: fornecedores?.map(fornecedor => ({
-          fornecedor_id: fornecedor.fornecedor_id,
-        })),
-        disconnect: [], // If you want to disconnect previously connected suppliers, you can specify them here.
-      },
-    },
-  });
-}
+    });
+  }
+  
 
 create(createProdutoDto: CreateProdutoDto) {
   const { fornecedores, categoria_id, ...produtoData } = createProdutoDto;
@@ -36,27 +36,38 @@ create(createProdutoDto: CreateProdutoDto) {
   return this.prisma.produto.create({
     data: {
       ...produtoData,
-      // Handle the category connection
       categoria: {
-        connect: { categoria_id }, // Assuming categoria_id is a number
+        connect: { categoria_id },
       },
-      // Handle the suppliers connection
-      fornecedores: {
-        connect: fornecedores?.map(fornecedor => ({
-          fornecedor_id: fornecedor.fornecedor_id, // Ensure this is a number
-        })) || [], // Default to an empty array if fornecedores is undefined
-      },
+      fornecedores: fornecedores?.length > 0
+        ? {
+            connect: fornecedores.map(fornecedor_id => ({
+              fornecedor_id, // Now it directly maps the ID to the correct format
+            })),
+          }
+        : undefined, // Handle case where no fornecedores are provided
     },
   });
 }
 
-  findAll() {
-    return this.prisma.produto.findMany();
-  }
+findAll() {
+  return this.prisma.produto.findMany({
+    include: {
+      categoria: true,  // This will include all category details
+      fornecedores: true // This will include all associated suppliers
+    }
+  });
+}
 
-  findOne(produto_id: number) {
-    return this.prisma.produto.findUnique({ where: { produto_id }});
-  }
+findOne(produto_id: number) {
+  return this.prisma.produto.findUnique({
+    where: { produto_id },
+    include: {
+      categoria: true, // Include full category details
+      fornecedores: true // Include all associated suppliers
+    }
+  });
+}
 
   remove(produto_id: number) {
     return this.prisma.produto.delete({ where: { produto_id }});

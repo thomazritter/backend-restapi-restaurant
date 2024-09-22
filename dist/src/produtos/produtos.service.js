@@ -33,12 +33,11 @@ let ProdutosService = class ProdutosService {
             where: { produto_id },
             data: Object.assign(Object.assign({}, produtoData), { categoria: {
                     connect: { categoria_id },
-                }, fornecedores: {
-                    connect: fornecedores === null || fornecedores === void 0 ? void 0 : fornecedores.map(fornecedor => ({
-                        fornecedor_id: fornecedor.fornecedor_id,
-                    })),
-                    disconnect: [],
-                } }),
+                }, fornecedores: (fornecedores === null || fornecedores === void 0 ? void 0 : fornecedores.length) > 0
+                    ? {
+                        set: fornecedores.map(fornecedor_id => ({ fornecedor_id })),
+                    }
+                    : undefined }),
         });
     }
     create(createProdutoDto) {
@@ -46,18 +45,31 @@ let ProdutosService = class ProdutosService {
         return this.prisma.produto.create({
             data: Object.assign(Object.assign({}, produtoData), { categoria: {
                     connect: { categoria_id },
-                }, fornecedores: {
-                    connect: (fornecedores === null || fornecedores === void 0 ? void 0 : fornecedores.map(fornecedor => ({
-                        fornecedor_id: fornecedor.fornecedor_id,
-                    }))) || [],
-                } }),
+                }, fornecedores: (fornecedores === null || fornecedores === void 0 ? void 0 : fornecedores.length) > 0
+                    ? {
+                        connect: fornecedores.map(fornecedor_id => ({
+                            fornecedor_id,
+                        })),
+                    }
+                    : undefined }),
         });
     }
     findAll() {
-        return this.prisma.produto.findMany();
+        return this.prisma.produto.findMany({
+            include: {
+                categoria: true,
+                fornecedores: true
+            }
+        });
     }
     findOne(produto_id) {
-        return this.prisma.produto.findUnique({ where: { produto_id } });
+        return this.prisma.produto.findUnique({
+            where: { produto_id },
+            include: {
+                categoria: true,
+                fornecedores: true
+            }
+        });
     }
     remove(produto_id) {
         return this.prisma.produto.delete({ where: { produto_id } });

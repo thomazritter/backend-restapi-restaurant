@@ -38,10 +38,19 @@ let FornecedoresService = class FornecedoresService {
         });
     }
     findAll() {
-        return this.prisma.fornecedor.findMany();
+        return this.prisma.fornecedor.findMany({
+            include: {
+                produtos: true
+            }
+        });
     }
     findOne(fornecedor_id) {
-        return this.prisma.fornecedor.findUnique({ where: { fornecedor_id } });
+        return this.prisma.fornecedor.findUnique({
+            where: { fornecedor_id },
+            include: {
+                produtos: true
+            }
+        });
     }
     update(fornecedor_id, updateFornecedorDto) {
         const { produtos } = updateFornecedorDto, fornecedorData = __rest(updateFornecedorDto, ["produtos"]);
