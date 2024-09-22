@@ -20,10 +20,19 @@ let ClientesService = class ClientesService {
         return this.prisma.cliente.create({ data: createClienteDto });
     }
     findAll() {
-        return this.prisma.cliente.findMany();
+        return this.prisma.cliente.findMany({
+            include: {
+                pedidos: true,
+            }
+        });
     }
     findOne(cliente_id) {
-        return this.prisma.cliente.findUnique({ where: { cliente_id } });
+        return this.prisma.cliente.findUnique({
+            where: { cliente_id },
+            include: {
+                pedidos: true,
+            }
+        });
     }
     update(cliente_id, updateClienteDto) {
         return this.prisma.cliente.update({

@@ -12,12 +12,21 @@ export class FuncionariosService {
   }
 
   findAll() {
-    return this.prisma.funcionario.findMany();
+    return this.prisma.funcionario.findMany({
+      include: {
+        pedidos: true, // Include related orders
+      }
+    });
   }
-
+  
   findOne(funcionario_id: number) {
-    return this.prisma.funcionario.findUnique({where: { funcionario_id }});
-  }
+    return this.prisma.funcionario.findUnique({
+      where: { funcionario_id },
+      include: {
+        pedidos: true, // Include related orders
+      }
+    });
+  }  
 
   update(funcionario_id: number, updateFuncionarioDto: UpdateFuncionarioDto) {
     return this.prisma.funcionario.update({

@@ -13,12 +13,21 @@ export class ClientesService {
   }
 
   findAll() {
-    return this.prisma.cliente.findMany();
+    return this.prisma.cliente.findMany({
+      include: {
+        pedidos: true, // Include related orders
+      }
+    });
   }
-
+  
   findOne(cliente_id: number) {
-    return this.prisma.cliente.findUnique({ where: { cliente_id }});
-  }
+    return this.prisma.cliente.findUnique({
+      where: { cliente_id },
+      include: {
+        pedidos: true, // Include related orders
+      }
+    });
+  }  
 
   update(cliente_id: number, updateClienteDto: UpdateClienteDto) {
     return this.prisma.cliente.update({

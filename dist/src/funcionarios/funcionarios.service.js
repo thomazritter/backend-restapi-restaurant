@@ -20,10 +20,19 @@ let FuncionariosService = class FuncionariosService {
         return this.prisma.funcionario.create({ data: createFuncionarioDto });
     }
     findAll() {
-        return this.prisma.funcionario.findMany();
+        return this.prisma.funcionario.findMany({
+            include: {
+                pedidos: true,
+            }
+        });
     }
     findOne(funcionario_id) {
-        return this.prisma.funcionario.findUnique({ where: { funcionario_id } });
+        return this.prisma.funcionario.findUnique({
+            where: { funcionario_id },
+            include: {
+                pedidos: true,
+            }
+        });
     }
     update(funcionario_id, updateFuncionarioDto) {
         return this.prisma.funcionario.update({

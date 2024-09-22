@@ -12,12 +12,34 @@ export class PedidosService {
   }
 
   findAll() {
-    return this.prisma.pedido.findMany();
+    return this.prisma.pedido.findMany({
+      include: {
+        cliente: true,
+        funcionario: true,
+        itens_pedido: {
+          include: {
+            produto: true, // Include product details in order items
+          }
+        }
+      }
+    });
   }
 
   findOne(pedido_id: number) {
-    return this.prisma.pedido.findUnique({ where: { pedido_id }});
+    return this.prisma.pedido.findUnique({
+      where: { pedido_id },
+      include: {
+        cliente: true,
+        funcionario: true,
+        itens_pedido: {
+          include: {
+            produto: true, // Include product details in order items
+          }
+        }
+      }
+    });
   }
+  
 
   update(pedido_id: number, updatePedidoDto: UpdatePedidoDto) {
     return this.prisma.pedido.update({

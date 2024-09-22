@@ -20,10 +20,31 @@ let PedidosService = class PedidosService {
         return this.prisma.pedido.create({ data: createPedidoDto });
     }
     findAll() {
-        return this.prisma.pedido.findMany();
+        return this.prisma.pedido.findMany({
+            include: {
+                cliente: true,
+                funcionario: true,
+                itens_pedido: {
+                    include: {
+                        produto: true,
+                    }
+                }
+            }
+        });
     }
     findOne(pedido_id) {
-        return this.prisma.pedido.findUnique({ where: { pedido_id } });
+        return this.prisma.pedido.findUnique({
+            where: { pedido_id },
+            include: {
+                cliente: true,
+                funcionario: true,
+                itens_pedido: {
+                    include: {
+                        produto: true,
+                    }
+                }
+            }
+        });
     }
     update(pedido_id, updatePedidoDto) {
         return this.prisma.pedido.update({
