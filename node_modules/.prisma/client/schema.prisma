@@ -11,13 +11,22 @@ datasource db {
 }
 
 model Funcionario {
-  funcionario_id  Int       @id @default(autoincrement())
-  nome_funcionario String
-  cargo           String
-  telefone        String
-  email           String   @unique
-  endereco        String
-  pedidos         Pedido[] // 1:n relation with Pedido
+  funcionario_id     Int                @id @default(autoincrement())
+  nome_funcionario   String
+  cargo              String
+  telefone           String
+  email              String             @unique
+  endereco           String
+  funcionarioDetails FuncionarioDetails?
+  pedidos            Pedido[]           // 1:n relation with Pedido
+}
+
+model FuncionarioDetails {
+  id                 Int         @id @default(autoincrement())
+  data_contratacao   DateTime    
+  salario            Float   
+  funcionario        Funcionario @relation(fields: [detailsEmail], references: [email])    
+  detailsEmail       String      @unique
 }
 
 model Cliente {

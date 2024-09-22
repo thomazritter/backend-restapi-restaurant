@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "start:all": "docker-compose up -d && sleep 20 && npx prisma migrate dev && npx prisma db seed && npm run start",
+    "start:all": "docker-compose down && docker-compose up -d && npx prisma migrate dev && npx prisma db seed && npm run start",
     "prebuild": "rimraf dist",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",

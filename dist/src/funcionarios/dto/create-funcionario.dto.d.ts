@@ -4,4 +4,6 @@ export declare class CreateFuncionarioDto {
     telefone: string;
     email: string;
     endereco: string;
+    data_contratacao?: Date;
+    salario?: number;
 }

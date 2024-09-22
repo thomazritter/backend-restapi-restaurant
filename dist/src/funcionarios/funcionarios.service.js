@@ -17,27 +17,63 @@ let FuncionariosService = class FuncionariosService {
         this.prisma = prisma;
     }
     create(createFuncionarioDto) {
-        return this.prisma.funcionario.create({ data: createFuncionarioDto });
+        const { nome_funcionario, cargo, telefone, email, endereco, data_contratacao, salario } = createFuncionarioDto;
+        return this.prisma.funcionario.create({
+            data: {
+                nome_funcionario,
+                cargo,
+                telefone,
+                email,
+                endereco,
+                funcionarioDetails: {
+                    create: {
+                        data_contratacao,
+                        salario,
+                    },
+                },
+            },
+            include: {
+                funcionarioDetails: true,
+            },
+        });
     }
     findAll() {
         return this.prisma.funcionario.findMany({
             include: {
-                pedidos: true,
-            }
+                funcionarioDetails: true,
+                pedidos: true
+            },
         });
     }
-    findOne(funcionario_id) {
+    findOne(id) {
         return this.prisma.funcionario.findUnique({
-            where: { funcionario_id },
+            where: { funcionario_id: id },
             include: {
-                pedidos: true,
-            }
+                funcionarioDetails: true,
+                pedidos: true
+            },
         });
     }
     update(funcionario_id, updateFuncionarioDto) {
+        const { nome_funcionario, cargo, telefone, email, endereco, data_contratacao, salario } = updateFuncionarioDto;
         return this.prisma.funcionario.update({
             where: { funcionario_id },
-            data: updateFuncionarioDto,
+            data: {
+                nome_funcionario,
+                cargo,
+                telefone,
+                email,
+                endereco,
+                funcionarioDetails: {
+                    update: {
+                        data_contratacao,
+                        salario,
+                    },
+                },
+            },
+            include: {
+                funcionarioDetails: true,
+            },
         });
     }
     remove(funcionario_id) {

@@ -3,6 +3,7 @@ import { FuncionariosService } from './funcionarios.service';
 import { CreateFuncionarioDto } from './dto/create-funcionario.dto';
 import { UpdateFuncionarioDto } from './dto/update-funcionario.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { ParseIntPipe } from '@nestjs/common';
 
 @Controller('funcionarios')
 @ApiTags('funcionarios')
@@ -25,8 +26,11 @@ export class FuncionariosController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() UpdateFuncionarioDto: UpdateFuncionarioDto) {
-    return this.funcionariosService.update(+id, UpdateFuncionarioDto);
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateFuncionarioDto: UpdateFuncionarioDto,
+  ) {
+    return this.funcionariosService.update(id, updateFuncionarioDto);
   }
 
   @Delete(':id')

@@ -11,6 +11,16 @@ CREATE TABLE "Funcionario" (
 );
 
 -- CreateTable
+CREATE TABLE "FuncionarioDetails" (
+    "id" SERIAL NOT NULL,
+    "data_contratacao" TIMESTAMP(3) NOT NULL,
+    "salario" DOUBLE PRECISION NOT NULL,
+    "detailsEmail" TEXT NOT NULL,
+
+    CONSTRAINT "FuncionarioDetails_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Cliente" (
     "cliente_id" SERIAL NOT NULL,
     "nome" TEXT NOT NULL,
@@ -83,6 +93,9 @@ CREATE TABLE "_ProdutoFornecedores" (
 CREATE UNIQUE INDEX "Funcionario_email_key" ON "Funcionario"("email");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "FuncionarioDetails_detailsEmail_key" ON "FuncionarioDetails"("detailsEmail");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Cliente_email_key" ON "Cliente"("email");
 
 -- CreateIndex
@@ -99,6 +112,9 @@ CREATE UNIQUE INDEX "_ProdutoFornecedores_AB_unique" ON "_ProdutoFornecedores"("
 
 -- CreateIndex
 CREATE INDEX "_ProdutoFornecedores_B_index" ON "_ProdutoFornecedores"("B");
+
+-- AddForeignKey
+ALTER TABLE "FuncionarioDetails" ADD CONSTRAINT "FuncionarioDetails_detailsEmail_fkey" FOREIGN KEY ("detailsEmail") REFERENCES "Funcionario"("email") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Pedido" ADD CONSTRAINT "Pedido_cliente_id_fkey" FOREIGN KEY ("cliente_id") REFERENCES "Cliente"("cliente_id") ON DELETE RESTRICT ON UPDATE CASCADE;

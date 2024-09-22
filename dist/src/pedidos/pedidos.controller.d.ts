@@ -9,15 +9,15 @@ export declare class PedidosController {
         itens_pedido: (import(".prisma/client").Item_Pedido & {
             produto: import(".prisma/client").Produto;
         })[];
-        cliente: import(".prisma/client").Cliente;
         funcionario: import(".prisma/client").Funcionario;
+        cliente: import(".prisma/client").Cliente;
     })[]>;
     findOne(id: string): import(".prisma/client").Prisma.Prisma__PedidoClient<import(".prisma/client").Pedido & {
         itens_pedido: (import(".prisma/client").Item_Pedido & {
             produto: import(".prisma/client").Produto;
         })[];
-        cliente: import(".prisma/client").Cliente;
         funcionario: import(".prisma/client").Funcionario;
+        cliente: import(".prisma/client").Cliente;
     }, never>;
     update(id: string, updatePedidoDto: UpdatePedidoDto): import(".prisma/client").Prisma.Prisma__PedidoClient<import(".prisma/client").Pedido, never>;
     remove(id: string): import(".prisma/client").Prisma.Prisma__PedidoClient<import(".prisma/client").Pedido, never>;

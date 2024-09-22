@@ -8,6 +8,8 @@ import {
     IsString,
     MaxLength,
     MinLength,
+    IsDateString,
+    IsNumber
 } from 'class-validator';
 
 export class CreateFuncionarioDto {
@@ -35,4 +37,14 @@ export class CreateFuncionarioDto {
     @IsString()
     @ApiProperty()
     endereco: string;
+
+    // Adding FuncionarioDetails information
+    @IsDateString()
+    @ApiProperty({ required: false })
+    data_contratacao?: Date;
+
+    @IsNumber()
+    @ApiProperty({ required: false })
+    salario?: number;
+
 }

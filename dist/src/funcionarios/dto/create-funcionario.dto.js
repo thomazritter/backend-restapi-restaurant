@@ -44,5 +44,15 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], CreateFuncionarioDto.prototype, "endereco", void 0);
+__decorate([
+    (0, class_validator_1.IsDateString)(),
+    (0, swagger_1.ApiProperty)({ required: false }),
+    __metadata("design:type", Date)
+], CreateFuncionarioDto.prototype, "data_contratacao", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, swagger_1.ApiProperty)({ required: false }),
+    __metadata("design:type", Number)
+], CreateFuncionarioDto.prototype, "salario", void 0);
 exports.CreateFuncionarioDto = CreateFuncionarioDto;
 //# sourceMappingURL=create-funcionario.dto.js.map
