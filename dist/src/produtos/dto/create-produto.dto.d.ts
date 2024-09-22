@@ -3,5 +3,5 @@ export declare class CreateProdutoDto {
     descricao: string;
     preco: number;
     categoria_id: number;
-    fornecedores: number[];
+    fornecedores?: number[];
 }
